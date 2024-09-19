@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guarani</title>
+    <!--CSS Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Link para o CSS personalizado -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-custom navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/icon-192.png" alt="Logo do Site">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="monografia.html">Monografias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="artigos.html">Artigos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dissertacoes.html">Dissertações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="teses.html">Teses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pesquisar.html">Pesquisar</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <section id="destaques">
+        <!-- Carousel Box -->
+        <div class="carousel-box">
+            <!-- Carousel -->
+            <div id="carouselExampleDark" class="carousel carousel-dark slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="carousel-content">
+                            <img src="img/logo.jpeg" class="d-block w-50 first-carousel-img"
+                                alt="Descrição da imagem 1">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="carousel-title">Plataforma Guarani</h5>
+                                <p class="carousel-description">A Plataforma Guarani é uma plataforma online que tem
+                                    como objetivo
+                                    facilitar o acesso e compartilhamento de informações acadêmicas, promovendo a
+                                    colaboração
+                                    entre estudantes, pesquisadores e profissionais de diversas áreas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-content">
+                            <img src="img/ia.jpg" class="d-block w-50 second-carousel-img" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="carousel-title">Uma Análise Crítica das Aplicações de IA no Ensino e
+                                    Aprendizado</h5>
+                                <p class="carousel-description">Leia mais clicando no card.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-content">
+                            <img src="img/escola.jpg" class="d-block w-50 third-carousel-img" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="carousel-title"> Papel das Ferramentas Tecnológicas na Promoção da Inclusão
+                                    de Estudantes </h5>
+                                <p class="carousel-description">Leia mais clicando no card.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mt-5 pt-5">
+        <!-- Seção de "Monografias" -->
+        <div class="row">
+            <div class="col">
+                <div class="section-box">
+                    <h2 class="mb-4 custom-title-color">Monografias</h2> <!-- Título "Monografias" -->
+                    <div class="card-group mb-4">
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Desafios da Telemedicina na Saúde Pública</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Analisando Impactos, Oportunidades e
+                                    Barreiras de Implementação</h6>
+                                <p class="card-text">Esta monografia investiga os desafios enfrentados pela telemedicina
+                                    na prestação de serviços de saúde pública. Examina os impactos positivos, como o
+                                    aumento do acesso aos cuidados de saúde em áreas remotas e a redução dos custos
+                                    operacionais, mas também destaca as barreiras significativas, incluindo questões
+                                    regulatórias, desigualdades de acesso à tecnologia e questões de privacidade dos
+                                    pacientes. O estudo oferece insights sobre como superar esses desafios para
+                                    maximizar os benefícios da telemedicina na saúde pública.
+                                </p>
+                                <p class="card-author">Autor: João da Silva</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Impacto da Inteligência Artificial na Indústria Automobilística
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Explorando Avanços, Desafios e
+                                    Implicações Futuras</h6>
+                                <p class="card-text">Esta monografia analisa o impacto crescente da inteligência
+                                    artificial (IA) na indústria automobilística. Examina os avanços recentes, como
+                                    veículos autônomos, sistemas de assistência ao motorista e manutenção preditiva,
+                                    destacando os benefícios potenciais, como a redução de acidentes e
+                                    congestionamentos. No entanto, também aborda os desafios, como questões de segurança
+                                    cibernética, responsabilidade legal e deslocamento de empregos. O estudo oferece
+                                    insights sobre as implicações futuras da IA na indústria automobilística e sugere
+                                    diretrizes para garantir uma adoção ética e eficaz dessas tecnologias.
+                                </p>
+                                <p class="card-author">Autor: Maria Oliveira</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Inovação Tecnológica na Educação: Transformando o Processo de
+                                    Aprendizagem</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Avaliando Ferramentas, Estratégias e
+                                    Impactos na Prática Pedagógica</h6>
+                                <p class="card-text">Esta monografia examina a inovação tecnológica na educação e seu
+                                    impacto no processo de aprendizagem. Analisa diversas ferramentas e estratégias,
+                                    como aprendizado online, gamificação, realidade virtual e inteligência artificial,
+                                    destacando seus efeitos na motivação dos alunos, engajamento e desempenho acadêmico.
+                                    O estudo também discute desafios, como a necessidade de capacitação de professores e
+                                    questões de equidade no acesso à tecnologia educacional. Conclui com recomendações
+                                    para promover uma integração eficaz da tecnologia na prática pedagógica.
+                                </p>
+                                <p class="card-author">Autor: Pedro Santos</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <!-- Adicione mais monografias aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Seção de "Artigos" -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="section-box">
+                    <h2 class="mb-4 custom-title-color">Artigos</h2> <!-- Título "Artigos" -->
+                    <div class="card-group mb-4">
+                        <!-- Estrutura semelhante à seção de Monografias -->
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">O Papel da Atividade Física na Promoção da Saúde Mental</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Uma Revisão Abrangente dos Benefícios
+                                    e Estratégias de Implementação</h6>
+                                <p class="card-text">Este artigo revisa a literatura atual sobre o papel da atividade
+                                    física na promoção da saúde mental. Explora os diversos benefícios psicológicos da
+                                    atividade física, incluindo a redução do estresse, ansiedade e depressão, além de
+                                    melhorias na autoestima e bem-estar geral. Além disso, discute estratégias eficazes
+                                    para promover a atividade física, tanto em nível individual quanto comunitário,
+                                    destacando a importância da conscientização, acesso a espaços seguros para
+                                    atividades e programas de intervenção específicos.
+                                </p>
+                                <p class="card-author">Autor: Ana Pereira</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Blockchain na Indústria de Saúde: Potencialidades e Desafios</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Explorando Aplicações, Benefícios e
+                                    Questões de Privacidade</h6>
+                                <p class="card-text">Este artigo analisa o potencial disruptivo da tecnologia blockchain
+                                    na indústria de saúde. Examina várias aplicações, como registros médicos
+                                    eletrônicos, gerenciamento de cadeias de suprimentos farmacêuticos e autenticação de
+                                    dados clínicos, destacando os benefícios de segurança, transparência e
+                                    interoperabilidade que ela oferece. No entanto, também aborda desafios
+                                    significativos, incluindo preocupações com privacidade, escalabilidade e adoção
+                                    generalizada. O artigo oferece insights sobre como superar esses desafios para
+                                    maximizar os benefícios da blockchain na saúde.
+                                </p>
+                                <p class="card-author">Autor: Carlos Lima</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">A Importância da Educação Socioemocional no Desenvolvimento
+                                    Integral dos Alunos</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Estratégias de Implementação e
+                                    Impactos na Aprendizagem</h6>
+                                <p class="card-text">Este artigo destaca a importância da educação socioemocional no
+                                    contexto educacional. Explora os benefícios de promover habilidades como empatia,
+                                    autoconsciência e resolução de conflitos para o desenvolvimento integral dos alunos,
+                                    incluindo melhorias no desempenho acadêmico, clima escolar positivo e habilidades
+                                    para a vida. Além disso, discute estratégias eficazes de implementação, como
+                                    currículos integrados, treinamento de professores e parcerias com a comunidade. O
+                                    artigo conclui com recomendações para integrar a educação socioemocional de forma
+                                    abrangente e sustentável nas escolas.
+                                </p>
+                                <p class="card-author">Autor: Beatriz Souza</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Seção de "Dissertações" -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="section-box">
+                    <h2 class="mb-4 custom-title-color">Dissertações</h2> <!-- Título "Dissertações" -->
+                    <div class="card-group mb-4">
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Impacto da Telemedicina na Acessibilidade aos Cuidados de Saúde
+                                    em Áreas Rurais</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Um Estudo de Caso em Comunidades
+                                    Remotas do Interior</h6>
+                                <p class="card-text">Esta dissertação investiga o impacto da telemedicina na
+                                    acessibilidade aos cuidados de saúde em áreas rurais. Utilizando um estudo de caso
+                                    em comunidades remotas do interior, o estudo examina como a telemedicina tem
+                                    facilitado o acesso a serviços médicos, reduzido as disparidades de saúde e
+                                    melhorado os resultados clínicos para residentes em regiões geograficamente
+                                    isoladas. Além disso, explora desafios associados à implementação da telemedicina
+                                    nessas áreas, incluindo questões de conectividade, aceitação do paciente e
+                                    integração com sistemas de saúde locais.
+                                </p>
+                                <p class="card-author">Autor: Daniela Martins</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Internet das Coisas (IoT) na Saúde: Potencialidades e Desafios
+                                    para a Gestão de Doenças Crônicas</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Um Estudo Prospectivo sobre
+                                    Implantação e Impacto</h6>
+                                <p class="card-text">Esta dissertação analisa o potencial da Internet das Coisas (IoT)
+                                    na gestão de doenças crônicas. Por meio de um estudo prospectivo, o trabalho
+                                    investiga como dispositivos IoT, como sensores de monitoramento de saúde e
+                                    aplicativos de rastreamento de dados, podem melhorar a qualidade de vida e os
+                                    resultados de saúde para pacientes com condições crônicas. Além disso, aborda
+                                    desafios relacionados à privacidade, segurança de dados e integração de sistemas de
+                                    informação de saúde, oferecendo insights sobre estratégias eficazes de implementação
+                                    e mitigação de riscos.
+                                </p>
+                                <p class="card-author">Autor: Lucas Ferreira</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Inovação Tecnológica na Educação: O Impacto da Realidade Virtual
+                                    na Aprendizagem Imersiva</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Uma Análise Crítica das Tendências
+                                    Atuais e Futuras</h6>
+                                <p class="card-text">Esta dissertação investiga o impacto da realidade virtual (RV) na
+                                    aprendizagem imersiva. Através de uma análise crítica das tendências atuais e
+                                    futuras, o estudo examina como a RV está sendo aplicada na educação para melhorar a
+                                    compreensão de conceitos complexos, promover a participação dos alunos e
+                                    proporcionar experiências de aprendizagem envolventes. Além disso, discute desafios
+                                    associados à adoção da RV na educação, como custo, acessibilidade e treinamento de
+                                    professores, oferecendo insights sobre estratégias de implementação e oportunidades
+                                    futuras de pesquisa.
+                                </p>
+                                <p class="card-author">Autor: Mariana Almeida</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <!-- Estrutura semelhante à seção de Monografias -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <div class="section-box">
+                    <h2 class="mb-4 custom-title-color">Teses</h2> <!-- Título "Teses" -->
+                    <div class="card-group mb-4">
+                        <!-- Estrutura semelhante à seção de Monografias -->
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">O Papel da Atividade Física na Promoção da Saúde Mental</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Uma Revisão Abrangente dos Benefícios
+                                    e Estratégias de Implementação</h6>
+                                <p class="card-text">Este artigo revisa a literatura atual sobre o papel da atividade
+                                    física na promoção da saúde mental. Explora os diversos benefícios psicológicos da
+                                    atividade física, incluindo a redução do estresse, ansiedade e depressão, além de
+                                    melhorias na autoestima e bem-estar geral. Além disso, discute estratégias eficazes
+                                    para promover a atividade física, tanto em nível individual quanto comunitário,
+                                    destacando a importância da conscientização, acesso a espaços seguros para
+                                    atividades e programas de intervenção específicos.
+                                </p>
+                                <p class="card-author">Autor: Ana Pereira</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Blockchain na Indústria de Saúde: Potencialidades e Desafios</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Explorando Aplicações, Benefícios e
+                                    Questões de Privacidade</h6>
+                                <p class="card-text">Este artigo analisa o potencial disruptivo da tecnologia blockchain
+                                    na indústria de saúde. Examina várias aplicações, como registros médicos
+                                    eletrônicos, gerenciamento de cadeias de suprimentos farmacêuticos e autenticação de
+                                    dados clínicos, destacando os benefícios de segurança, transparência e
+                                    interoperabilidade que ela oferece. No entanto, também aborda desafios
+                                    significativos, incluindo preocupações com privacidade, escalabilidade e adoção
+                                    generalizada. O artigo oferece insights sobre como superar esses desafios para
+                                    maximizar os benefícios da blockchain na saúde.
+                                </p>
+                                <p class="card-author">Autor: Carlos Lima</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                        <div class="card me-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">A Importância da Educação Socioemocional no Desenvolvimento
+                                    Integral dos Alunos</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Estratégias de Implementação e
+                                    Impactos na Aprendizagem</h6>
+                                <p class="card-text">Este artigo destaca a importância da educação socioemocional no
+                                    contexto educacional. Explora os benefícios de promover habilidades como empatia,
+                                    autoconsciência e resolução de conflitos para o desenvolvimento integral dos alunos,
+                                    incluindo melhorias no desempenho acadêmico, clima escolar positivo e habilidades
+                                    para a vida. Além disso, discute estratégias eficazes de implementação, como
+                                    currículos integrados, treinamento de professores e parcerias com a comunidade. O
+                                    artigo conclui com recomendações para integrar a educação socioemocional de forma
+                                    abrangente e sustentável nas escolas.
+                                </p>
+                                <p class="card-author">Autor: Beatriz Souza</p>
+                                <a href="#" class="card-link">Saiba mais</a>
+                                <a href="#" class="card-link">Link da revista</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-light text-center text-lg-start">
+        <div class="container p-4 custom-footer-color">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links Úteis</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#sobre">Sobre nós</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#privacidade">Política de Privacidade</a></li>
+                        <li><a href="#termos">Termos de Serviço</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Contato</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li>Email: exemplo@dominio.com</li>
+                        <li>Telefone: (XX) XXXX-XXXX</li>
+                        <li>Endereço: Rua Exemplo, 1234</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Redes Sociais</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae justo ultrices,
+                scelerisque turpis ac, fermentum dui. Nunc lacinia, eros eget consequat fermentum.</p>
+            <p class="site-credit">Site made by <a href="..." title="...">Rafael Duailibe</a></p>
+        </div>
+    </footer>
+
+
+
+    <!--JavaScript Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
