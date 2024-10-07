@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artigos</title>
-    <!--CSS Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="artigos.css"> <!-- Vinculando o arquivo CSS personalizado -->
+    <title>Cadastro</title>
+    <!-- CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/cadastro.css"> <!-- Link para o CSS personalizado -->
 </head>
 
 <body>
@@ -16,8 +15,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-custom navbar-expand-lg fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                <img src="img/icon-192.png" alt="Logo do Site">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../resource/img/icon-192.png" alt="Logo do Site">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -51,56 +50,60 @@
         </div>
     </nav>
 
-    <!-- Conteúdo principal -->
-    <main class="container mt-5 pt-5">
-        <div class="row">
-            <div class="col">
-                <div class="section-box">
-                    <h2 class="mb-4 custom-title-color">Artigos</h2>
-                    <a href="pesquisar.html" class="btn btn-primary ms-3">Pesquisar</a>
-                    <div class="card-group mb-4">
-                        <!-- Aqui começam os artigos -->
-                        <div class="card me-3" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Título do Artigo 1</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">Subtítulo do Artigo 1</h6>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                    vehicula viverra leo nec aliquam. Curabitur sit amet ipsum nec dui venenatis
-                                    efficitur. Integer eget justo tortor.</p>
-                                <p class="card-author">Autor: Nome do Autor 1</p>
-                                <a href="#" class="card-link">Leia mais</a>
-                            </div>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="cadastro-container">
+                    <h2>Cadastro</h2>
+                    <form method="POST" action="processar_cadastro.php">
+                        <!-- Campos do formulário de cadastro -->
+                        <div class="mb-3 form-group">
+                            <label for="nome" class="form-label">Nome:</label>
+                            <input type="text" id="nome" name="nome" class="form-control" required>
                         </div>
-                        <div class="card me-3" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Título do Artigo 2</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">Subtítulo do Artigo 1</h6>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                    vehicula viverra leo nec aliquam. Curabitur sit amet ipsum nec dui venenatis
-                                    efficitur. Integer eget justo tortor.</p>
-                                <p class="card-author">Autor: Nome do Autor 2</p>
-                                <a href="#" class="card-link">Leia mais</a>
-                            </div>
+                        <div class="mb-3 form-group">
+                            <label for="ra" class="form-label">RA ou Matrícula:</label>
+                            <input type="text" id="ra" name="ra" class="form-control" required>
                         </div>
-                        <div class="card me-3" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Título do Artigo 3</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">Subtítulo do Artigo 1</h6>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                    vehicula viverra leo nec aliquam. Curabitur sit amet ipsum nec dui venenatis
-                                    efficitur. Integer eget justo tortor.</p>
-                                <p class="card-author">Autor: Nome do Autor 3</p>
-                                <a href="#" class="card-link">Leia mais</a>
-                            </div>
+                        <div class="mb-3 form-group">
+                            <label for="instituicao" class="form-label">Instituição:</label>
+                            <input type="text" id="instituicao" name="instituicao" class="form-control" required>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="Email institucional" required>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="senha" class="form-label">Senha:</label>
+                            <input type="password" id="senha" name="senha" class="form-control" required>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="confirmar_senha" class="form-label">Confirmar Senha:</label>
+                            <input type="password" id="confirmar_senha" name="confirmar_senha" class="form-control"
+                                required>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="tipo_usuario" class="form-label">Tipo de Usuário:</label>
+                            <select class="form-select" id="tipo_usuario" name="tipo_usuario" required>
+                                <option value="">Selecione o tipo de usuário</option>
+                                <option value="aluno">Aluno</option>
+                                <option value="professor">Professor</option>
+                            </select>
                         </div>
 
-                        <!-- Adicione mais cards de artigos aqui -->
-
+                        <!-- Botão de submit -->
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </form>
+                    <div class="cadastro-footer">
+                        <p>Já tem uma conta? <a href="login.html" class="cadastro-link">Faça login aqui</a></p>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+
 
     <footer class="bg-light text-center text-lg-start">
         <div class="container p-4 custom-footer-color">
@@ -137,11 +140,9 @@
             <p class="site-credit">Site made by <a href="..." title="...">Rafael Duailibe</a></p>
         </div>
     </footer>
-
-    <!--JavaScript Bootstrap-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    
+    <!-- JavaScript Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
