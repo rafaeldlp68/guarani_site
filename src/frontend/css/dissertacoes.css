@@ -1,0 +1,146 @@
+/* Estilos para o título principal */
+.custom-title-color {
+    color: #ee962c; /* Cor laranja */
+}
+
+/* Estilos para as caixas de cartão das dissertações */
+.card {
+    background-color: #ffffff; /* Cor de fundo dos cards */
+    color: #212529; /* Cor do texto nos cards */
+    margin-bottom: 20px; /* Espaçamento inferior entre os cards */
+}
+
+/* Estilos para os links nos cards */
+.card-link {
+    color: #ee962c; /* Cor laranja para os links */
+    text-decoration: none; /* Remove a decoração de sublinhado dos links */
+    font-weight: bold; /* Deixa os links em negrito */
+}
+
+.card-link:hover {
+    color: #ffcc80; /* Cor laranja claro ao passar o mouse sobre os links */
+}
+
+/* Estilos para o autor das dissertações */
+.card-author {
+    color: #a6a6a6; /* Cor cinza para o autor */
+    font-style: italic; /* Estilo itálico para o autor */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff; /* Branco */
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding-top: 60px; /* Ajuste conforme a altura da sua navbar */
+}
+
+/* Estilos para o footer */
+footer.bg-light {
+    background-color: #006837 !important; /* Cor de fundo do footer */
+    color: #f2f2f2; /* Cor do texto */
+    padding: 40px 0; /* Espaçamento para o footer */
+}
+
+footer.bg-light h5 {
+    color: #ee962c; /* Cor laranja para os títulos */
+    margin-bottom: 20px; /* Espaçamento abaixo dos títulos */
+}
+
+footer.bg-light ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer.bg-light ul li {
+    margin-bottom: 10px; /* Espaçamento entre os itens da lista */
+}
+
+footer.bg-light ul li a {
+    color: #f2f2f2; /* Cor do texto dos links */
+    text-decoration: none;
+}
+
+footer.bg-light ul li a:hover {
+    color: #faf515; /* Cor amarela ao passar o mouse */
+}
+
+footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+footer .container > div {
+    flex: 1 1 200px; /* Cada coluna ocupa pelo menos 200px */
+    padding: 0 20px; /* Espaçamento entre as colunas */
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+/* Informações adicionais e créditos */
+footer.bg-light p {
+    color: #f2f2f2; /* Cor clara para o texto */
+    margin: 0; /* Remover margens */
+}
+
+footer.bg-light .site-credit {
+    text-align: center;
+    margin-top: 20px; /* Espaçamento superior */
+    color: #f2f2f2; /* Cor clara */
+}
+
+footer.bg-light .site-credit a {
+    color: #ee962c; /* Cor laranja para o link do crédito */
+    text-decoration: none;
+}
+
+footer.bg-light .site-credit a:hover {
+    color: #faf515; /* Cor amarela ao passar o mouse */
+}
+
+
+/* Estilos para a navbar fixa */
+.navbar-custom {
+    background-color: #006837; /* Verde escuro */
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+.navbar-nav .nav-link {
+    color: #faf515; /* Amarelo */
+    font-weight: bold;
+    margin-right: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #03fe00; /* Verde claro ao passar o mouse */
+}
+
+.navbar-nav .nav-item:last-child .nav-link {
+    color: #faf515; /* Verde escuro para o link "Login" */
+}
+
+.navbar-collapse {
+    justify-content: center;
+}
+
+.navbar-collapse ul:last-child {
+    margin-left: auto;
+}
+
+/* Margem inferior no botão Pesquisar */
+.container .btn-primary {
+    margin-bottom: 20px; /* Ajuste conforme necessário */
+}
