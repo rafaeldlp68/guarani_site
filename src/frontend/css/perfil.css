@@ -1,0 +1,134 @@
+/* Estilo da página de perfil */
+
+
+/* Margem superior para o conteúdo */
+.container {
+    margin-top: 80px;
+}
+
+/* Estilo do título */
+h1#welcomeMessage {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #006837; /* Verde escuro */
+}
+
+/* Estilo da mensagem do tipo de usuário */
+p#userType {
+    font-size: 1.25rem;
+    color: #6c757d; /* Cinza escuro */
+}
+
+/* Estilo dos botões de ação */
+.actions .btn {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* Estilos para a navbar */
+.navbar-custom {
+    background-color: #006837; /* Verde escuro */
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+.navbar-nav .nav-link {
+    color: #faf515; /* Amarelo */
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #03fe00; /* Verde claro */
+}
+
+/* Fixando o footer no rodapé */
+/* Certificando que o HTML e o body ocupam 100% da altura da janela */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Configura o layout flexível no body para manter o footer no rodapé */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* O body ocupa no mínimo a altura da janela */
+}
+
+/* O main vai expandir para ocupar o espaço restante */
+main {
+    flex: 1; /* Faz o conteúdo expandir para preencher o espaço vazio */
+}
+
+/* Footer fixo no rodapé */
+footer.bg-light {
+    background-color: #006837 !important; /* Cor de fundo do footer */
+    color: #f2f2f2; /* Cor do texto */
+    padding: 40px 0; /* Espaçamento dentro do footer */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer.bg-light h5 {
+    color: #ee962c; /* Cor laranja para os títulos */
+    margin-bottom: 20px; /* Espaçamento abaixo dos títulos */
+}
+
+footer.bg-light ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer.bg-light ul li {
+    margin-bottom: 10px; /* Espaçamento entre os itens da lista */
+}
+
+footer.bg-light ul li a {
+    color: #f2f2f2; /* Cor do texto dos links */
+    text-decoration: none;
+}
+
+footer.bg-light ul li a:hover {
+    color: #faf515; /* Cor amarela ao passar o mouse */
+}
+
+footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+footer .container > div {
+    flex: 1 1 200px; /* Cada coluna ocupa pelo menos 200px */
+    padding: 0 20px; /* Espaçamento entre as colunas */
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+/* Informações adicionais e créditos */
+footer.bg-light p {
+    color: #f2f2f2; /* Cor clara para o texto */
+    margin: 0; /* Remover margens */
+}
+
+footer.bg-light .site-credit {
+    text-align: center;
+    margin-top: 20px; /* Espaçamento superior */
+    color: #f2f2f2; /* Cor clara */
+}
+
+footer.bg-light .site-credit a {
+    color: #ee962c; /* Cor laranja para o link do crédito */
+    text-decoration: none;
+}
+
+footer.bg-light .site-credit a:hover {
+    color: #faf515; /* Cor amarela ao passar o mouse */
+}
+

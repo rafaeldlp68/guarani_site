@@ -15,6 +15,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data); // Exibe os dados recebidos no console do navegador
         if (data.message === 'Login bem-sucedido!') {
             // Armazenar informações no localStorage
             localStorage.setItem('nome', data.usuario.nome);

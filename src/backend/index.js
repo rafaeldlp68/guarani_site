@@ -107,24 +107,40 @@ app.get('/api/usuarios', (req, res) => {
   });
 
 // Rota para obter todos os trabalhos acadêmicos de um usuário
-app.get('/api/trabalhos', (req, res) => {
+app.get('/api/trabalhos/usuario', (req, res) => {
   const { usuario_id } = req.query;
 
   if (!usuario_id) {
-      return res.status(400).json({ message: 'Usuário não especificado.' });
+    return res.status(400).json({ message: 'Usuário não especificado.' });
   }
 
   const query = 'SELECT * FROM trabalhos WHERE usuario_id = ?';
 
   db.query(query, [usuario_id], (err, results) => {
     if (err) {
-      console.error('Erro ao buscar trabalhos:', err);
+      console.error('Erro ao buscar trabalhos do usuário:', err);
+      return res.status(500).json({ message: 'Erro ao buscar trabalhos do usuário.' });
+    }
+
+    res.json(results); // Envia os trabalhos do usuário especificado
+  });
+});
+
+// Rota para obter todos os trabalhos acadêmicos (usada pelo admin)
+app.get('/api/trabalhos', (req, res) => {
+  const query = 'SELECT * FROM trabalhos';  // Sem filtro de usuario_id
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar todos os trabalhos:', err);
       return res.status(500).json({ message: 'Erro ao buscar trabalhos.' });
     }
 
-    res.json(results);
+    res.json(results); // Retorna todos os trabalhos
   });
 });
+
+
 
 // Rota para excluir um trabalho acadêmico
 app.delete('/api/trabalhos/:id', (req, res) => {
@@ -139,6 +155,62 @@ app.delete('/api/trabalhos/:id', (req, res) => {
     }
 
     res.json({ message: 'Trabalho acadêmico excluído com sucesso!' });
+  });
+});
+
+// Rota para destacar um trabalho
+app.post('/api/trabalhos/destacar', (req, res) => {
+  const { trabalho_id } = req.body;
+
+  // Verificar se o trabalho já está destacado
+  const checkQuery = 'SELECT destaque FROM trabalhos WHERE id = ?';
+  db.query(checkQuery, [trabalho_id], (err, results) => {
+      if (err) {
+          console.error('Erro ao verificar o status de destaque:', err);
+          return res.status(500).json({ message: 'Erro ao verificar o status de destaque.' });
+      }
+
+      if (results.length > 0 && results[0].destaque === 1) {
+          return res.status(400).json({ message: 'O trabalho já está destacado.' });
+      }
+
+      // Se não estiver destacado, realizar a atualização
+      const query = 'UPDATE trabalhos SET destaque = 1 WHERE id = ?';
+      db.query(query, [trabalho_id], (err, result) => {
+          if (err) {
+              console.error('Erro ao destacar o trabalho:', err);
+              return res.status(500).json({ message: 'Erro ao destacar o trabalho.' });
+          }
+          res.json({ message: 'Trabalho destacado com sucesso!' });
+      });
+  });
+});
+
+// Rota para remover o destaque de um trabalho
+app.post('/api/trabalhos/remover-destaque', (req, res) => {
+  const { trabalho_id } = req.body;
+
+  const query = 'UPDATE trabalhos SET destaque = 0 WHERE id = ?';
+  db.query(query, [trabalho_id], (err, result) => {
+      if (err) {
+          console.error('Erro ao remover o destaque do trabalho:', err);
+          return res.status(500).json({ message: 'Erro ao remover o destaque.' });
+      }
+      res.json({ message: 'Destaque removido com sucesso!' });
+  });
+});
+
+// Rota para buscar trabalhos destacados
+app.get('/api/trabalhos/destacados', (req, res) => {
+  const query = 'SELECT * FROM trabalhos WHERE destaque = 1';
+
+  db.query(query, (err, results) => {
+      if (err) {
+          console.error('Erro ao buscar trabalhos destacados:', err);
+          return res.status(500).json({ message: 'Erro ao buscar trabalhos destacados.' });
+      }
+
+      res.json(results);
   });
 });
 
@@ -210,6 +282,14 @@ app.post('/api/login', (req, res) => {
       return res.status(401).json({ message: 'Senha incorreta.' });
     }
 
-    res.json({ message: 'Login bem-sucedido!', usuario });
+    // Retornar a mensagem de sucesso com o tipo de usuário
+    res.json({
+      message: 'Login bem-sucedido!',
+      usuario: {
+        nome: usuario.nome,
+        tipo_usuario: usuario.tipo_usuario,
+        id: usuario.id
+      }
+    });
   });
 });

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const usuario_id = localStorage.getItem('usuario_id');
 
     // Fazer uma requisição ao backend para buscar os trabalhos do usuário
-    fetch(`/api/trabalhos?usuario_id=${usuario_id}`)
+    fetch(`/api/trabalhos/usuario?usuario_id=${usuario_id}`)
         .then(response => response.json())
         .then(trabalhos => {
             const trabalhosTable = document.getElementById('trabalhosTable').getElementsByTagName('tbody')[0];

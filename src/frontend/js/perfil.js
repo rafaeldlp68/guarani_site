@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Exibe botões baseados no tipo de usuário
     const actionButtons = document.getElementById('actionButtons');
+
     if (tipo_usuario === 'aluno') {
         actionButtons.innerHTML = `
             <a href="cadastrar_trabalho.html" class="btn btn-primary me-2">Cadastrar Trabalho</a>
@@ -21,8 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     } else if (tipo_usuario === 'admin') {
         actionButtons.innerHTML = `
+            <a href="cadastrar_trabalho.html" class="btn btn-primary me-2">Cadastrar Trabalho</a>
             <a href="gerenciar_usuarios.html" class="btn btn-warning me-2">Gerenciar Usuários</a>
-            <a href="ver_trabalhos.html" class="btn btn-secondary">Ver Todos os Trabalhos</a>
+            <a href="ver_trabalhos_admin.html" class="btn btn-secondary">Ver Todos os Trabalhos</a> <!-- Redireciona para uma nova página específica para admin -->
         `;
     }
 });
