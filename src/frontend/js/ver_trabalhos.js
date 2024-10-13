@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Adicionar os dados do trabalho nas células
                 row.insertCell(0).textContent = trabalho.titulo;
                 row.insertCell(1).textContent = trabalho.tipo_trabalho;
-                row.insertCell(2).textContent = trabalho.data_submissao;
+                row.insertCell(2).textContent = trabalho.data_publicacao;
 
                 // Adicionar botões de edição e exclusão
                 const actionCell = row.insertCell(3);

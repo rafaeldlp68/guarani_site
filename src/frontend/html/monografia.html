@@ -54,52 +54,37 @@
 
     <!-- Main Content -->
     <main class="container mt-5 pt-5">
+        <!-- Destaques -->
         <div class="row">
             <div class="col">
                 <div class="section-box">
                     <h2 class="mb-4 custom-title-color">Monografias</h2>
-                    <a href="pesquisar.html" class="btn btn-primary ms-3">Pesquisar</a>
-                    <div class="card-group mb-4">
-                        <!-- Card 1 -->
-                        <div class="card me-3" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Título da Monografia 1</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Subtítulo da Monografia 1</h6>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                    vehicula viverra leo nec aliquam. Curabitur sit amet ipsum nec dui venenatis
-                                    efficitur. Integer eget justo tortor.</p>
-                                <p class="card-author">Autor: Nome do Autor</p>
-                                <a href="#" class="card-link">Saiba mais</a>
-                                <a href="#" class="card-link">Link da revista</a>
-                            </div>
-                        </div>
+                    <div id="destaques-container" class="card-group mb-4">
+                        <!-- Destaques inseridos dinamicamente aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        <!-- Card 2 -->
-                        <div class="card me-3" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Título da Monografia 2</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Subtítulo da Monografia 2</h6>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                                    dapibus, velit nec laoreet pharetra, sapien dui ultricies metus, non dictum felis
-                                    tortor vel nulla.</p>
-                                <p class="card-author">Autor: Nome do Autor</p>
-                                <a href="#" class="card-link">Saiba mais</a>
-                                <a href="#" class="card-link">Link da revista</a>
-                            </div>
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Título da Monografia 3</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Subtítulo da Monografia 3</h6>
-                                <p class="card-text">Phasellus venenatis elit vitae dui cursus, id interdum justo
-                                    pulvinar. Integer et libero nec lacus efficitur sollicitudin vel sit amet arcu.</p>
-                                <p class="card-author">Autor: Nome do Autor</p>
-                                <a href="#" class="card-link">Saiba mais</a>
-                                <a href="#" class="card-link">Link da revista</a>
-                            </div>
-                        </div>
+        <!-- Monografias Recentes -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="section-box">
+                    <h2 class="mb-4 custom-title-color">Monografias Recentes</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Título</th>
+                                    <th>Autor(es)</th>
+                                    <th>Data de Publicação</th>
+                                    <th>Link</th>
+                                </tr>
+                            </thead>
+                            <tbody id="monografias-recentes-table-body">
+                                <!-- Monografias recentes inseridas dinamicamente aqui -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -146,6 +131,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <!-- Link para o arquivo JavaScript -->
+    <script src="../js/monografia.js"></script>
 </body>
 
 </html>

@@ -7,12 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Pega os dados do formulário
         const tipo_trabalho = document.getElementById('tipo_trabalho').value;
         const area_conhecimento = document.getElementById('area_conhecimento').value; // Captura o campo área de conhecimento
+        const curso = document.getElementById('curso').value; // Captura o campo curso
         const titulo = document.getElementById('titulo').value;
         const subtitulo = document.getElementById('subtitulo').value;
         const autores = document.getElementById('autores').value.split(',').map(autor => autor.trim());
         const palavras_chave = document.getElementById('palavras_chave').value.split(',').map(palavra => palavra.trim());
-        const data_submissao = document.getElementById('data_submissao').value;
+        const data_publicacao = document.getElementById('data_publicacao').value; // Alterado para data_publicacao
         const resumo = document.getElementById('resumo').value;
+        const revista = document.getElementById('revista').value; // Captura o campo revista
+        const qualis = document.getElementById('qualis').value; // Captura o campo qualis
         const link_publicacao = document.getElementById('link_publicacao').value;
         const usuario_id = localStorage.getItem('usuario_id'); // Pega o usuario_id do localStorage
 
@@ -24,13 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({
                 tipo_trabalho,
-                area_conhecimento, // Adiciona o campo área de conhecimento
+                area_conhecimento, 
+                curso, 
                 titulo,
                 subtitulo,
                 autores,
                 palavras_chave,
-                data_submissao,
+                data_publicacao,
                 resumo,
+                revista,
+                qualis,
                 link_publicacao,
                 usuario_id
             })

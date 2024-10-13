@@ -53,47 +53,45 @@
 
     <!-- Conteúdo principal -->
     <main class="container mt-5 pt-5">
+        <!-- Destaques -->
         <div class="row">
             <div class="col">
                 <div class="section-box">
                     <h2 class="mb-4 custom-title-color">Teses</h2>
-                    <a href="pesquisar.html" class="btn btn-primary ms-3">Pesquisar</a>
-                    <div class="card-group mb-4">
-                        <!-- Aqui começam as teses -->
-                        <div class="card me-3" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Título da Tese 1</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">Subtítulo da Tese 1</h6>
-                                <p class="card-text">Descrição breve sobre o tema abordado nesta tese. Esta seção pode incluir um resumo ou introdução ao conteúdo explorado.</p>
-                                <p class="card-author">Autor: Nome do Autor 1</p>
-                                <a href="#" class="card-link">Leia mais</a>
-                            </div>
-                        </div>
-
-                        <!-- Adicione mais cards de teses aqui -->
-                        <div class="card me-3" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Título da Tese 2</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">Subtítulo da Tese 2</h6>
-                                <p class="card-text">Descrição breve sobre o tema abordado nesta tese. Esta seção pode incluir um resumo ou introdução ao conteúdo explorado.</p>
-                                <p class="card-author">Autor: Nome do Autor 2</p>
-                                <a href="#" class="card-link">Leia mais</a>
-                            </div>
-                        </div>
-                        <div class="card me-3" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Título da Tese 1</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">Subtítulo da Tese 1</h6>
-                                <p class="card-text">Descrição breve sobre o tema abordado nesta tese. Esta seção pode incluir um resumo ou introdução ao conteúdo explorado.</p>
-                                <p class="card-author">Autor: Nome do Autor 1</p>
-                                <a href="#" class="card-link">Leia mais</a>
-                            </div>
-                        </div>
+                    <div id="destaques-container" class="card-group mb-4">
+                        <!-- Destaques inseridos dinamicamente aqui -->
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Teses Recentes -->
+        <div class="row mt-5">
+            <div class="col">
+                <div class="section-box">
+                    <h2 class="mb-4 custom-title-color">Teses Recentes</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Título</th>
+                                    <th>Autor(es)</th>
+                                    <th>Data de Publicação</th>
+                                    <th>Link</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teses-recentes-table-body">
+                                <!-- Teses recentes inseridas dinamicamente aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="recentes-pagination" class="pagination-container"></div>
+                    <!-- Paginação para teses recentes -->
+                </div>
+            </div>
+        </div>
     </main>
+
 
     <footer class="bg-light text-center text-lg-start">
         <div class="container p-4 custom-footer-color">
@@ -130,11 +128,12 @@
             <p class="site-credit">Site made by <a href="..." title="...">Rafael Duailibe</a></p>
         </div>
     </footer>
-    
+
     <!--JavaScript Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="../js/teses.js"></script>
 
 </body>
 

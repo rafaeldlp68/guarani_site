@@ -70,17 +70,47 @@ app.post('/api/cadastro', async (req, res) => {
 
 // Rota de cadastro de trabalhos acadêmicos
 app.post('/api/trabalhos', (req, res) => {
-  const { tipo_trabalho, area_conhecimento, titulo, subtitulo, autores, palavras_chave, data_submissao, resumo, link_publicacao, usuario_id } = req.body;
+  const {
+    tipo_trabalho,
+    area_conhecimento,
+    curso,
+    titulo,
+    subtitulo,
+    autores,
+    palavras_chave,
+    data_publicacao,
+    resumo,
+    revista,
+    qualis,
+    link_publicacao,
+    usuario_id
+  } = req.body;
 
   // Validações simples
-  if (!tipo_trabalho || !area_conhecimento || !titulo || !autores || !palavras_chave || !data_submissao || !resumo || !link_publicacao || !usuario_id) {
+  if (!tipo_trabalho || !area_conhecimento || !titulo || !autores || !palavras_chave || !data_publicacao || !resumo || !link_publicacao || !usuario_id) {
     return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
   }
 
-  // Query para inserir o trabalho acadêmico
-  const query = `INSERT INTO trabalhos (tipo_trabalho, area_conhecimento, titulo, subtitulo, autores, palavras_chave, data_submissao, resumo, link_publicacao, usuario_id) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-  const values = [tipo_trabalho, area_conhecimento, titulo, subtitulo, JSON.stringify(autores), JSON.stringify(palavras_chave), data_submissao, resumo, link_publicacao, usuario_id];
+  // Query para inserir o trabalho acadêmico, sem mencionar a coluna "destaque" para usar o valor padrão
+  const query = `INSERT INTO trabalhos 
+                 (tipo_trabalho, area_conhecimento, curso, titulo, subtitulo, autores, palavras_chave, data_publicacao, resumo, revista, qualis, link_publicacao, usuario_id) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  const values = [
+    tipo_trabalho,
+    area_conhecimento,
+    curso,
+    titulo,
+    subtitulo,
+    JSON.stringify(autores),
+    JSON.stringify(palavras_chave),
+    data_publicacao,
+    resumo,
+    revista,
+    qualis,
+    link_publicacao,
+    usuario_id
+  ];
 
   db.query(query, values, (err, result) => {
     if (err) {
@@ -90,6 +120,8 @@ app.post('/api/trabalhos', (req, res) => {
     res.status(201).json({ message: 'Trabalho acadêmico cadastrado com sucesso!' });
   });
 });
+
+
 
 
 // Rota para obter todos os usuários
@@ -140,7 +172,28 @@ app.get('/api/trabalhos', (req, res) => {
   });
 });
 
+// Rota para filtrar trabalhos por tipo
+app.get('/api/trabalhos/filtrar', (req, res) => {
+  const { tipo } = req.query;
 
+  let query = 'SELECT * FROM trabalhos';
+  const params = [];
+
+  // Se "tipo" estiver definido, filtrar pelos trabalhos do tipo
+  if (tipo) {
+    query += ' WHERE tipo_trabalho = ?';
+    params.push(tipo);
+  }
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar trabalhos por tipo:', err);
+      return res.status(500).json({ message: 'Erro ao buscar trabalhos por tipo.' });
+    }
+
+    res.json(results);  // Retorna os trabalhos filtrados
+  });
+});
 
 // Rota para excluir um trabalho acadêmico
 app.delete('/api/trabalhos/:id', (req, res) => {
@@ -200,61 +253,114 @@ app.post('/api/trabalhos/remover-destaque', (req, res) => {
   });
 });
 
-// Rota para buscar trabalhos destacados
+// Rota para buscar trabalhos destacados com filtro opcional por tipo
 app.get('/api/trabalhos/destacados', (req, res) => {
-  const query = 'SELECT * FROM trabalhos WHERE destaque = 1';
+  const { tipo } = req.query;  // Obtém o tipo de trabalho da query string, se fornecido
 
-  db.query(query, (err, results) => {
-      if (err) {
-          console.error('Erro ao buscar trabalhos destacados:', err);
-          return res.status(500).json({ message: 'Erro ao buscar trabalhos destacados.' });
-      }
+  let query = 'SELECT * FROM trabalhos WHERE destaque = 1';
+  const values = [];
 
-      res.json(results);
+  if (tipo) {
+    query += ' AND tipo_trabalho = ?';
+    values.push(tipo);
+  }
+
+  db.query(query, values, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar trabalhos destacados:', err);
+      return res.status(500).json({ message: 'Erro ao buscar trabalhos destacados.' });
+    }
+
+    res.json(results);
   });
 });
 
+
 // Rota de pesquisa de trabalhos acadêmicos
 app.get('/api/pesquisar', (req, res) => {
-  const { categoria, area_conhecimento, data_inicio, autor } = req.query;
+  const { categoria, area_conhecimento, ano_inicial, ano_final, autor, titulo, revista, qualis } = req.query;
 
-  // Exibir os parâmetros no console para debugar
-  console.log('Parâmetros de pesquisa:', { categoria, area_conhecimento, data_inicio, autor });
+  // Mapeando os números da categoria para os valores reais no banco de dados
+  const categoriaMap = {
+    '1': 'artigo',
+    '2': 'dissertacao',
+    '3': 'monografia',
+    '4': 'tese'
+  };
+
+  const categoriaReal = categoriaMap[categoria] || null; // Obtém a categoria real ou null
+
+  // Exibir os parâmetros no console para depuração
+  console.log('Parâmetros de pesquisa:', { categoriaReal, area_conhecimento, ano_inicial, ano_final, autor, titulo, revista, qualis });
 
   // Construir a query dinâmica com base nos filtros
   let query = 'SELECT * FROM trabalhos WHERE 1=1';
   const values = [];
 
-  if (categoria) {
-      query += ' AND tipo_trabalho = ?';
-      values.push(categoria);
+  // Adicionando os parâmetros somente se eles estiverem preenchidos
+  if (categoriaReal) {
+    query += ' AND tipo_trabalho = ?';
+    values.push(categoriaReal);
   }
 
-  if (area_conhecimento) {
-      query += ' AND area_conhecimento = ?';
-      values.push(area_conhecimento);
+  if (area_conhecimento && area_conhecimento !== 'Selecione uma área') {
+    query += ' AND area_conhecimento = ?';
+    values.push(area_conhecimento);
   }
 
-  if (data_inicio) {
-      query += ' AND data_submissao >= ?';
-      values.push(data_inicio);
+  if (ano_inicial) {
+    query += ' AND YEAR(data_publicacao) >= ?';
+    values.push(ano_inicial);
+  }
+
+  if (ano_final) {
+    query += ' AND YEAR(data_publicacao) <= ?';
+    values.push(ano_final);
   }
 
   if (autor) {
-      query += ' AND autores LIKE ?';
-      values.push(`%${autor}%`);
+    query += ' AND autores LIKE ?';
+    values.push(`%${autor}%`);
   }
+
+  if (titulo) {
+    query += ' AND titulo LIKE ?';
+    values.push(`%${titulo}%`);
+  }
+
+  if (revista) {
+    query += ' AND revista LIKE ?';
+    values.push(`%${revista}%`);
+  }
+
+  // Ajuste para o filtro de qualis, tratando valores nulos ou vazios
+  if (qualis && qualis !== 'Selecione o qualis') {
+    query += ' AND (qualis = ? OR qualis IS NULL OR qualis = "")';  // Aqui lidamos com valores nulos ou vazios
+    values.push(qualis);
+  }
+
+  // Logar a query completa para verificar se está correta
+  console.log('Query gerada:', query);
+  console.log('Valores:', values);
 
   // Executar a query no banco de dados
   db.query(query, values, (err, results) => {
-      if (err) {
-          console.error('Erro ao buscar trabalhos:', err);
-          return res.status(500).json({ message: 'Erro ao buscar trabalhos.' });
-      }
+    if (err) {
+      console.error('Erro ao buscar trabalhos:', err);
+      return res.status(500).json({ message: 'Erro ao buscar trabalhos.' });
+    }
 
-      res.json(results);
+    if (results.length === 0) {
+      console.log('Nenhum trabalho encontrado para os filtros aplicados.');
+    } else {
+      console.log('Trabalhos encontrados:', results.length);
+    }
+
+    res.json(results);
   });
 });
+
+
 
 
 

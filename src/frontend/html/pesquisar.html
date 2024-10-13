@@ -49,49 +49,81 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="container mt-5 pt-5">
-        <h2 class="mb-4 custom-title-color">Pesquisa Avançada</h2>
-        <form>
-            <div class="mb-3">
-                <label for="categoria" class="form-label">Categoria</label>
-                <select class="form-select" id="categoria">
-                    <option selected>Selecione uma categoria</option>
-                    <option value="1">Artigos</option>
-                    <option value="2">Dissertações</option>
-                    <option value="3">Monografia</option>
-                    <option value="4">Tese</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="area-conhecimento" class="form-label">Área de Conhecimento</label>
-                <select class="form-select" id="area-conhecimento">
-                    <option selected>Selecione uma área</option>
-                    <option value="1">Tecnologia</option>
-                    <option value="2">Educação</option>
-                    <option value="3">Saúde</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="data" class="form-label">Data de Publicação</label>
-                <input type="date" class="form-control" id="data">
-            </div>
-            
-            <div class="mb-3">
-                <label for="autor" class="form-label">Autor</label>
-                <input type="text" class="form-control" id="autor" placeholder="Digite o nome do autor">
-            </div>
-
-            <button type="submit" class="btn btn-custom">Aplicar Filtros</button>
-        </form>
-
-        <div id="resultados" class="mt-5">
-            <!-- Os resultados da pesquisa aparecerão aqui -->
+<!-- Main Content -->
+<main class="container mt-5 pt-5">
+    <h2 class="mb-4 custom-title-color">Pesquisa Avançada</h2>
+    <form id="pesquisaForm">
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoria</label>
+            <select class="form-select" id="categoria">
+                <option selected>Selecione uma categoria</option>
+                <option value="1">Artigos</option>
+                <option value="2">Dissertações</option>
+                <option value="3">Monografia</option>
+                <option value="4">Tese</option>
+            </select>
         </div>
 
-    </main>
+        <div class="mb-3">
+            <label for="area-conhecimento" class="form-label">Área de Conhecimento</label>
+            <select class="form-select" id="area-conhecimento">
+                <option selected>Selecione uma área</option>
+                <option value="1">Tecnologia</option>
+                <option value="2">Educação</option>
+                <option value="3">Saúde</option>
+            </select>
+        </div>
+      
+        <div class="mb-3">
+            <label for="autor" class="form-label">Autor</label>
+            <input type="text" class="form-control" id="autor" placeholder="Digite o nome do autor">
+        </div>
+
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" class="form-control" id="titulo" placeholder="Digite o título">
+          </div>
+          
+          <div class="mb-3">
+            <label for="ano-inicial" class="form-label">Ano de Publicação Inicial</label>
+            <input type="number" class="form-control" id="ano-inicial" placeholder="Digite o ano inicial">
+          </div>
+          
+          <div class="mb-3">
+            <label for="ano-final" class="form-label">Ano de Publicação Final</label>
+            <input type="number" class="form-control" id="ano-final" placeholder="Digite o ano final">
+          </div>
+          
+          <div class="mb-3">
+            <label for="revista" class="form-label">Revista</label>
+            <input type="text" class="form-control" id="revista" placeholder="Digite a revista">
+          </div>
+          
+          <div class="mb-3">
+            <label for="qualis" class="form-label">Qualis</label>
+            <select class="form-select" id="qualis">
+              <option selected>Selecione o qualis</option>
+              <option value="A1">A1</option>
+              <option value="A2">A2</option>
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="B3">B3</option>
+              <option value="B4">B4</option>
+              <option value="B5">B5</option>
+              <option value="C">C</option>
+            </select>
+          </div>
+
+        <button type="submit" class="btn btn-custom">Aplicar Filtros</button>
+    </form>
+
+    <div id="resultados" class="mt-5">
+        <!-- Os resultados da pesquisa aparecerão aqui -->
+    </div>
+
+    <!-- Controles de paginação -->
+    <div id="pagination" class="mt-4"></div>
+</main>
 
     <footer class="bg-light text-center text-lg-start">
         <div class="container p-4 custom-footer-color">
