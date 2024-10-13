@@ -275,7 +275,6 @@ app.get('/api/trabalhos/destacados', (req, res) => {
   });
 });
 
-
 // Rota de pesquisa de trabalhos acadêmicos
 app.get('/api/pesquisar', (req, res) => {
   const { categoria, area_conhecimento, ano_inicial, ano_final, autor, titulo, revista, qualis } = req.query;
@@ -359,10 +358,6 @@ app.get('/api/pesquisar', (req, res) => {
     res.json(results);
   });
 });
-
-
-
-
 
 // Rota de login
 app.post('/api/login', (req, res) => {
