@@ -8,10 +8,11 @@ app.use(express.json()); // Para suportar JSON no body das requisições
 
 // Configurações do banco de dados MySQL
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'SenhaTeste123!',
-  database: 'guaranifinal'
+  host: process.env.MYSQLHOST,       
+  user: process.env.MYSQLUSER,       
+  password: process.env.MYSQLPASSWORD, 
+  database: process.env.MYSQLDATABASE, 
+  port: process.env.MYSQLPORT        
 });
 
 // Conectar ao banco de dados
