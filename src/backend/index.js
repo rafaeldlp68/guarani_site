@@ -22,7 +22,7 @@ db.connect((err) => {
     return;
   }
   console.log('Conectado ao banco de dados MySQL!');
-  
+
   // Criar tabela de usuários
   const criarTabelaUsuarios = `
     CREATE TABLE IF NOT EXISTS usuarios (
@@ -71,9 +71,47 @@ db.connect((err) => {
         return;
       }
       console.log('Tabela de trabalhos criada ou já existente!');
+
+      // Verificar e criar o usuário admin
+      criarUsuarioAdmin();
     });
   });
 });
+
+// Função para criar o usuário admin se ele não existir
+async function criarUsuarioAdmin() {
+  const emailAdmin = 'admin@example.com';
+
+  // Verificar se o usuário admin já existe
+  const checkAdminQuery = `SELECT * FROM usuarios WHERE email = ?`;
+  db.query(checkAdminQuery, [emailAdmin], async (err, results) => {
+    if (err) {
+      console.error('Erro ao verificar a existência do admin:', err);
+      return;
+    }
+
+    if (results.length === 0) {
+      // Se o admin não existir, criá-lo
+      const senha = 'senhaSeguraAdmin'; // Defina a senha aqui
+      const senhaHash = await bcrypt.hash(senha, 10);
+
+      const inserirAdminQuery = `
+        INSERT INTO usuarios (nome, ra_matricula, instituicao, email, senha_hash, tipo_usuario)
+        VALUES ('Admin', '000000', 'Instituicao Exemplo', ?, ?, 'admin')
+      `;
+
+      db.query(inserirAdminQuery, [emailAdmin, senhaHash], (err, result) => {
+        if (err) {
+          console.error('Erro ao criar o usuário admin:', err);
+        } else {
+          console.log('Usuário admin criado com sucesso.');
+        }
+      });
+    } else {
+      console.log('Usuário admin já existe.');
+    }
+  });
+}
 
 // Middleware para servir arquivos estáticos do frontend
 app.use(express.static('src/frontend'));
