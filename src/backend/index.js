@@ -22,6 +22,45 @@ db.connect((err) => {
     return;
   }
   console.log('Conectado ao banco de dados MySQL!');
+  // Criar as tabelas se não existirem
+  const criarTabelas = `
+    CREATE TABLE IF NOT EXISTS usuarios (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      nome VARCHAR(255) NOT NULL,
+      ra_matricula VARCHAR(50) NOT NULL,
+      instituicao VARCHAR(255),
+      email VARCHAR(255) NOT NULL,
+      senha_hash VARCHAR(255) NOT NULL,
+      tipo_usuario ENUM('aluno', 'professor', 'admin') NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS trabalhos (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      tipo_trabalho ENUM('monografia', 'dissertacao', 'tese', 'artigo') NOT NULL,
+      titulo VARCHAR(255) NOT NULL,
+      subtitulo VARCHAR(255),
+      autores JSON NOT NULL,
+      palavras_chave JSON NOT NULL,
+      data_publicacao DATE NOT NULL,
+      resumo TEXT NOT NULL,
+      link_publicacao VARCHAR(255) NOT NULL,
+      usuario_id INT NOT NULL,
+      curso VARCHAR(255),
+      area_conhecimento VARCHAR(255),
+      revista VARCHAR(255),
+      qualis ENUM('A1', 'A2', 'B1', 'B2', 'B3', 'B4', 'B5', 'C'),
+      destaque TINYINT DEFAULT 0,
+      FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+    );
+  `;
+
+  db.query(criarTabelas, (err, result) => {
+    if (err) {
+      console.error('Erro ao criar as tabelas:', err);
+      return;
+    }
+    console.log('Tabelas criadas ou já existentes!');
+  });
 });
 
 // Middleware para servir arquivos estáticos do frontend
