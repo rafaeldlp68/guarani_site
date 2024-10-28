@@ -15,68 +15,81 @@ const db = mysql.createConnection({
   port: process.env.MYSQLPORT        
 });
 
-// Conectar ao banco de dados
-db.connect((err) => {
-  if (err) {
-    console.error('Erro ao conectar ao banco de dados:', err);
-    return;
-  }
-  console.log('Conectado ao banco de dados MySQL!');
-
-  // Criar tabela de usuários
-  const criarTabelaUsuarios = `
-    CREATE TABLE IF NOT EXISTS usuarios (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      nome VARCHAR(255) NOT NULL,
-      ra_matricula VARCHAR(50) NOT NULL,
-      instituicao VARCHAR(255),
-      email VARCHAR(255) NOT NULL,
-      senha_hash VARCHAR(255) NOT NULL,
-      tipo_usuario ENUM('aluno', 'professor', 'admin') NOT NULL
-    );
-  `;
-
-  db.query(criarTabelaUsuarios, (err, result) => {
+  // Conectar ao banco de dados
+  db.connect((err) => {
     if (err) {
-      console.error('Erro ao criar a tabela de usuários:', err);
-      return;
+      console.error('Erro ao conectar ao banco de dados:', err);
+      setTimeout(handleDisconnect, 2000); // Tentar reconectar após 2 segundos
+    } else {
+      console.log('Conectado ao banco de dados MySQL!');
+
+      // Criar tabela de usuários
+      const criarTabelaUsuarios = `
+        CREATE TABLE IF NOT EXISTS usuarios (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          nome VARCHAR(255) NOT NULL,
+          ra_matricula VARCHAR(50) NOT NULL,
+          instituicao VARCHAR(255),
+          email VARCHAR(255) NOT NULL,
+          senha_hash VARCHAR(255) NOT NULL,
+          tipo_usuario ENUM('aluno', 'professor', 'admin') NOT NULL
+        );
+      `;
+
+      db.query(criarTabelaUsuarios, (err) => {
+        if (err) {
+          console.error('Erro ao criar a tabela de usuários:', err);
+          return;
+        }
+        console.log('Tabela de usuários criada ou já existente!');
+
+        // Após criar a tabela de usuários, criar a tabela de trabalhos
+        const criarTabelaTrabalhos = `
+          CREATE TABLE IF NOT EXISTS trabalhos (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            tipo_trabalho ENUM('monografia', 'dissertacao', 'tese', 'artigo') NOT NULL,
+            titulo VARCHAR(255) NOT NULL,
+            subtitulo VARCHAR(255),
+            autores JSON NOT NULL,
+            palavras_chave JSON NOT NULL,
+            data_publicacao DATE NOT NULL,
+            resumo TEXT NOT NULL,
+            link_publicacao VARCHAR(255) NOT NULL,
+            usuario_id INT NOT NULL,
+            curso VARCHAR(255),
+            area_conhecimento VARCHAR(255),
+            revista VARCHAR(255),
+            qualis ENUM('A1', 'A2', 'B1', 'B2', 'B3', 'B4', 'B5', 'C'),
+            destaque TINYINT DEFAULT 0,
+            FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+          );
+        `;
+
+        db.query(criarTabelaTrabalhos, (err) => {
+          if (err) {
+            console.error('Erro ao criar a tabela de trabalhos:', err);
+            return;
+          }
+          console.log('Tabela de trabalhos criada ou já existente!');
+
+          // Verificar e criar o usuário admin
+          criarUsuarioAdmin();
+        });
+      });
     }
-    console.log('Tabela de usuários criada ou já existente!');
-
-    // Após criar a tabela de usuários, criar a tabela de trabalhos
-    const criarTabelaTrabalhos = `
-      CREATE TABLE IF NOT EXISTS trabalhos (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        tipo_trabalho ENUM('monografia', 'dissertacao', 'tese', 'artigo') NOT NULL,
-        titulo VARCHAR(255) NOT NULL,
-        subtitulo VARCHAR(255),
-        autores JSON NOT NULL,
-        palavras_chave JSON NOT NULL,
-        data_publicacao DATE NOT NULL,
-        resumo TEXT NOT NULL,
-        link_publicacao VARCHAR(255) NOT NULL,
-        usuario_id INT NOT NULL,
-        curso VARCHAR(255),
-        area_conhecimento VARCHAR(255),
-        revista VARCHAR(255),
-        qualis ENUM('A1', 'A2', 'B1', 'B2', 'B3', 'B4', 'B5', 'C'),
-        destaque TINYINT DEFAULT 0,
-        FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
-      );
-    `;
-
-    db.query(criarTabelaTrabalhos, (err, result) => {
-      if (err) {
-        console.error('Erro ao criar a tabela de trabalhos:', err);
-        return;
-      }
-      console.log('Tabela de trabalhos criada ou já existente!');
-
-      // Verificar e criar o usuário admin
-      criarUsuarioAdmin();
-    });
   });
-});
+
+  // Tratamento de erros na conexão
+  db.on('error', (err) => {
+    console.error('Erro no banco de dados:', err);
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+      console.log('Conexão perdida. Tentando reconectar...');
+      handleDisconnect(); // Tentar reconectar automaticamente
+    } else {
+      throw err;
+    }
+  });
+
 
 // Função para criar o usuário admin se ele não existir
 async function criarUsuarioAdmin() {
@@ -100,7 +113,7 @@ async function criarUsuarioAdmin() {
         VALUES ('Admin', '000000', 'Instituicao Exemplo', ?, ?, 'admin')
       `;
 
-      db.query(inserirAdminQuery, [emailAdmin, senhaHash], (err, result) => {
+      db.query(inserirAdminQuery, [emailAdmin, senhaHash], (err) => {
         if (err) {
           console.error('Erro ao criar o usuário admin:', err);
         } else {
@@ -112,6 +125,9 @@ async function criarUsuarioAdmin() {
     }
   });
 }
+
+// Inicializar a conexão com o banco de dados e aplicar reconexão automática
+handleDisconnect();
 
 // Middleware para servir arquivos estáticos do frontend
 app.use(express.static('src/frontend'));
