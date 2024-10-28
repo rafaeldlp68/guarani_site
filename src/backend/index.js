@@ -7,13 +7,16 @@ const port = process.env.PORT || 3000;
 app.use(express.json()); // Para suportar JSON no body das requisições
 
 // Configurações do banco de dados MySQL
-const db = mysql.createConnection({
-  host: process.env.MYSQLHOST,       
-  user: process.env.MYSQLUSER,       
-  password: process.env.MYSQLPASSWORD, 
-  database: process.env.MYSQLDATABASE, 
-  port: process.env.MYSQLPORT        
-});
+let db;
+
+function handleDisconnect() {
+  db = mysql.createConnection({
+    host: process.env.MYSQLHOST,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: process.env.MYSQLPORT,
+  });
 
   // Conectar ao banco de dados
   db.connect((err) => {
@@ -89,7 +92,7 @@ const db = mysql.createConnection({
       throw err;
     }
   });
-
+}
 
 // Função para criar o usuário admin se ele não existir
 async function criarUsuarioAdmin() {
@@ -126,9 +129,6 @@ async function criarUsuarioAdmin() {
   });
 }
 
-// Inicializar a conexão com o banco de dados e aplicar reconexão automática
-handleDisconnect();
-
 // Middleware para servir arquivos estáticos do frontend
 app.use(express.static('src/frontend'));
 
@@ -136,6 +136,9 @@ app.use(express.static('src/frontend'));
 app.get('/api', (req, res) => {
   res.send({ message: 'API funcionando!' });
 });
+
+// Iniciar a função de reconexão automática
+handleDisconnect();
 
 // Iniciar o servidor
 app.listen(port, () => {
